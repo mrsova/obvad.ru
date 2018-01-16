@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        Пользователи
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -33,31 +33,37 @@
                 <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Uids</th>
                   <th>Имя</th>
-                  <th>E-mail</th>
-                  <th>Аватар</th>
+                  <th>Логин</th>
+                  <th>Vk</th>
+                  <th>Email</th>
+                  <th>Админ</th>
+                  <th>Cтатус</th>
                   <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-	                <tr>
-	                  <td>{{$user->id}}</td>
-	                  <td>{{$user->name}}</td>
-	                  <td>{{$user->email}}</td>
-	                  <td>
-	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="150">
-	                  </td>
-	                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
-	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
-                          <button onclick="return confirm('are you sure?')" type="submit" class="delete">
-                           <i class="fa fa-remove"></i>
-                          </button>
-	                   {{Form::close()}}
-	                  </td>
-	                </tr>
+                  <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->uids}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->login}}</td>
+                    <td>{{$user->vk_url}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->is_admin}}</td>
+                    <td>{{$user->status}}</td>
+                    <td>
+                      <a href="{{route('users.edit', 1)}}" class="fa fa-pencil"></a>
+                      {{Form::open(['route'=>['users.destroy', 1], 'method'=>'delete'])}}
+                      <button onclick="return confirm('Вы действительно хотите удалить?')" type="submit" class="delete">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      {{Form::close()}}
+                    </td>
+                  </tr>
                 @endforeach
-
                 </tfoot>
               </table>
             </div>

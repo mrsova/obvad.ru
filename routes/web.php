@@ -2,6 +2,7 @@
 
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::get('/', 'DashboardController@index');
+    Route::resource('/users', 'UsersController');
     //Route::resource('/posts', 'PostsController');
     /*Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
@@ -12,4 +13,9 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::get('/comments/toggle/{id}', 'CommentsController@toggle');
     Route::get('/comments/toggle/{id}', 'CommentsController@toggle');
     Route::resource('/subscribers', 'SubsController');*/
+});
+
+
+Route::group(['namespace'=>'Front'], function(){
+    Route::get('/', 'HomeController@index');
 });

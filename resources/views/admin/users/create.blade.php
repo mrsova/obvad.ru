@@ -13,7 +13,7 @@
 
     <!-- Main content -->
     <section class="content">
-		{{Form::open(['route'	=>	'users.store', 'files'	=>	true])}}
+		{{Form::open(['route'	=>	'users.store'])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -23,22 +23,20 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Имя</label>
-              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('name')}}">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
-              <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('email')}}">
+              <label for="exampleInputEmail1">Логин</label>
+              <input type="text" name="login" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('login')}}">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Пароль</label>
               <input type="password" name="password" class="form-control" id="exampleInputEmail1" placeholder="">
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Аватар</label>
-              <input type="file" name="avatar" id="exampleInputFile">
-
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <label for="exampleInputEmail1">Имя</label>
+              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('name')}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail</label>
+              <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('email')}}">
             </div>
         </div>
       </div>
