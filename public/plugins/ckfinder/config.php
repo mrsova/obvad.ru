@@ -31,9 +31,9 @@ $config['authentication'] = function () {
 
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
-//https://xdan.ru/kak-ubrat-nadpis-demo-v-ckfinder.html
+//http://www.phamgiang.pro/apps/ckfinderKey - взлом ключа
 $config['licenseName'] = $_SERVER['HTTP_HOST'];
-$config['licenseKey']  = 'H808000010011000000000000W0';
+$config['licenseKey']  = 'VJUJJGGWAU7B7BTWQSF62CM3RY9GB';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

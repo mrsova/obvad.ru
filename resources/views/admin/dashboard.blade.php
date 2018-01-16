@@ -19,7 +19,7 @@
                 <h3 class="box-title">Главная страница</h3>
             </div>
             <div class="box-body">
-                Текст инструкции по пользованию админкой
+                <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

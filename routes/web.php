@@ -1,7 +1,8 @@
 <?php
 
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
-    Route::resource('/posts', 'PostsController');
+    Route::get('/', 'DashboardController@index');
+    //Route::resource('/posts', 'PostsController');
     /*Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');
