@@ -18,4 +18,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
 
 Route::group(['namespace'=>'Front'], function(){
     Route::get('/', 'HomeController@index');
+    Route::get('/vklogin', 'AuthController@vkLogin')->name('vklogin');
+    Route::get('/auth/callback', 'AuthController@AuthVk');
+    Route::get('/logout', 'AuthController@logout');
 });

@@ -65,6 +65,21 @@
     </style>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if(session('status'))
+                <div class="alert alert-info">
+                    {{session('status')}}
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+@if(!Auth::check())
+    <a href="{{route('vklogin')}}">Войти на сайт через вк</a>
+@else
+    <a href="/logout">Выйти</a>
+@endif
 </body>
 </html>

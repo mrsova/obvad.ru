@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'login'
+        'name', 'email', 'login', 'vk_url', 'uids'
     ];
 
     /**
@@ -81,6 +81,25 @@ class User extends Authenticatable
         $this->uids = $fields['uids'];
         $this->vk_url = $fields['vk_url'];
         $this->save();
+    }
+
+    /**
+     * Проверяет авторизовывался ли  через VK пользователь у нас на сайте
+     *
+     * @param $fields
+     * @return static
+     */
+    public static function isVk($uids)
+    {
+        $user = self::where('uids', $uids)->first();
+        if($user)
+        {
+            return $user;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
