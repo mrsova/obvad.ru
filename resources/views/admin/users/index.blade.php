@@ -68,7 +68,7 @@
                     </td>
                     <td>
                       <a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a>
-                      {{Form::open(['route'=>['users.destroy', 1], 'method'=>'delete'])}}
+                      {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
                       <button onclick="return confirm('Вы действительно хотите удалить?')" type="submit" class="delete">
                         <i class="fa fa-remove"></i>
                       </button>

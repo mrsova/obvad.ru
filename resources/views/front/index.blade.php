@@ -1,85 +1,66 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('front.layout')
 
-    <title>Laravel</title>
+@section('content')
+    <!--main content start-->
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    asfg
+                    {{--@foreach($posts as $post)--}}
+                        {{--<article class="post">--}}
+                            {{--<div class="post-thumb">--}}
+                                {{--<a href="{{route('post.show', $post->slug)}}"><img src="{{$post->getImage()}}" alt=""></a>--}}
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+                                {{--<a href="{{route('post.show', $post->slug)}}" class="post-thumb-overlay text-center">--}}
+                                    {{--<div class="text-uppercase text-center">View Post</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                            {{--<div class="post-content">--}}
+                                {{--<header class="entry-header text-center text-uppercase">--}}
+                                    {{--@if($post->hasCategory())--}}
+                                        {{--<h6><a href="{{route('category.show', $post->category->slug)}}"> {{$post->getCategoryTitle()}}</a></h6>--}}
+                                    {{--@endif--}}
+                                    {{--<h1 class="entry-title"><a href="{{route('post.show', $post->slug)}}">{{$post->title}}</a></h1>--}}
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
 
-        .full-height {
-            height: 100vh;
-        }
+                                {{--</header>--}}
+                                {{--<div class="entry-content">--}}
+                                    {{--<p>--}}
+                                        {{--{!!$post->description!!}--}}
+                                    {{--</p>--}}
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            @if(session('status'))
-                <div class="alert alert-info">
-                    {{session('status')}}
+                                    {{--<div class="btn-continue-reading text-center text-uppercase">--}}
+                                        {{--<a href="{{route('post.show', $post->slug)}}" class="more-link">Continue Reading</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="social-share">--}}
+                                    {{--<span class="social-share-title pull-left text-capitalize">By <a href="#">{{$post->author->name}}</a> On {{$post->getDate()}}</span>--}}
+                                    {{--<ul class="text-center pull-right">--}}
+                                        {{--<li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
+                                        {{--<li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
+                                        {{--<li><a class="s-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>--}}
+                                        {{--<li><a class="s-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>--}}
+                                        {{--<li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</article>--}}
+                    {{--@endforeach--}}
+                    {{--{{$posts->links()}}--}}
+                    {{--<ul class="pagination">--}}
+                    {{--<li class="active"><a href="#">1</a></li>--}}
+                    {{--<li><a href="#">2</a></li>--}}
+                    {{--<li><a href="#">3</a></li>--}}
+                    {{--<li><a href="#">4</a></li>--}}
+                    {{--<li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>--}}
+                    {{--</ul>--}}
+                    {{----}}
+                        {{--команда для вида пагинации--}}
+                        {{--php artisan vendor:publish --tag=laravel-pagination--}}
+                    {{----}}
                 </div>
-            @endif
+            </div>
         </div>
     </div>
-</div>
-@if(!Auth::check())
-    <a href="{{route('vklogin')}}">Войти на сайт через вк</a>
-@else
-    <a href="/logout">Выйти</a>
-@endif
-</body>
-</html>
+@endsection

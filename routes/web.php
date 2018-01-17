@@ -20,5 +20,10 @@ Route::group(['namespace'=>'Front'], function(){
     Route::get('/', 'HomeController@index');
     Route::get('/vklogin', 'AuthController@vkLogin')->name('vklogin');
     Route::get('/auth/callback', 'AuthController@AuthVk');
+
+        Route::get('/login', 'AuthController@loginForm')->name('login');
+        Route::post('/login', 'AuthController@login');
+
+
     Route::get('/logout', 'AuthController@logout');
 });

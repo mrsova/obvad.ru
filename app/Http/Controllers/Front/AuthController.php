@@ -52,6 +52,32 @@ class AuthController extends Controller
     }
 
     /**
+     * Показать форму авторизации
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loginForm()
+    {
+        return view('front.login');
+    }
+
+    public function login(Request $request)
+    {
+        $this->validate($request,[
+            'login' => 'required',
+            'password' => 'required'
+        ]);
+        //Попытаться на основе полей залоигинить пользователя
+        if(Auth::attempt([
+            'login' => $request->get('login'),
+            'password' => $request->get('password'),
+        ]))
+        {
+            return redirect('/');
+        }
+        return redirect()->back()->with('statusLogin', 'Неправильный логин или пароль');
+    }
+
+    /**
      * Выход
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
