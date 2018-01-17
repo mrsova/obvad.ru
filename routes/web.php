@@ -23,7 +23,13 @@ Route::group(['namespace'=>'Front'], function(){
 
         Route::get('/login', 'AuthController@loginForm')->name('login');
         Route::post('/login', 'AuthController@login');
+        Route::get('/register', 'AuthController@registerForm');
+        Route::post('/register', 'AuthController@register');
+        Route::get('/resetpass', 'AuthController@resetPassShowForm')->name('resetpass');
+        Route::post('/resetpass', 'AuthController@resetPass');
 
 
     Route::get('/logout', 'AuthController@logout');
+        Route::get('/profile', 'ProfileController@index');
+        Route::post('/profile', 'ProfileController@store');
 });

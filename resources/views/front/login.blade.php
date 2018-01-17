@@ -1,13 +1,11 @@
 @extends('front.layout')
 
 @section('content')
-    <!--main content start-->
     <div class="main-content">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
-                    <div class="leave-comment mr0"><!--leave comment-->
+                    <div class="leave-comment mr0">
                         <h3>Войти</h3>
                         @include('admin.errors')
                         @if(session('statusLogin'))
@@ -30,12 +28,11 @@
                             </div>
                             <button type="submit" class="btn send-btn">Вход</button>
                             <a class="btn send-btn" href="{{route('vklogin')}}">Войти через VK</a>
+                            <a href="{{route('resetpass')}}">Забыли пароль</a>
                         </form>
-                    </div><!--end leave comment-->
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end main content-->
 @endsection

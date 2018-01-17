@@ -92,6 +92,7 @@ class User extends Authenticatable
     public static function isVk($uids)
     {
         $user = self::where('uids', $uids)->first();
+
         if($user)
         {
             return $user;
