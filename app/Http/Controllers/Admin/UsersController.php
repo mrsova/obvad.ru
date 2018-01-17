@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use function compact;
+use function dd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -57,7 +59,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -69,7 +72,24 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $this->validate($request,[
+            'login' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
+        $user->edit($request->all());
+        $user->generatePassword($request->get('password'));
+
+        $user->toggleAdmin($request->get('is_admin'));
+        $user->toggleStatus($request->get('status'));
+        return redirect()->route('users.index');
     }
 
     /**

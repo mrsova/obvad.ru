@@ -28,24 +28,42 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Имя</label>
+              <label for="exampleInputil1">Имя</label>
               <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="" value="{{$user->name}}">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
+              <label for="exampleInputEm1">Логин</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="login" value="{{$user->login}}" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="exampleInpail1">Vk</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="vk_url" value="{{$user->vk_url}}" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="exampleInpumail1">E-mail</label>
               <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="" value="{{$user->email}}">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Пароль</label>
+              <label for="exampleInputEml1">Пароль</label>
               <input type="password" class="form-control" id="exampleInputEmail1" name="password" placeholder="">
             </div>
             <div class="form-group">
-              <img src="{{$user->getImage()}}" alt="" width="200" class="img-responsive">
-              <label for="exampleInputFile">Аватар</label>
-              <input type="file" name="avatar" id="exampleInputFile">
-
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <label>
+                {{Form::checkbox('status', '1', $user->status, ['class'=>'minimal'])}}
+              </label>
+              <label>
+                Активен
+              </label>
             </div>
+            <div class="form-group">
+              <label>
+                {{Form::checkbox('is_admin', '1', $user->is_admin, ['class'=>'minimal'])}}
+              </label>
+              <label>
+                Администратор
+              </label>
+            </div>
+
         </div>
       </div>
         <!-- /.box-body -->

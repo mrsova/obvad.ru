@@ -9,8 +9,8 @@ class User extends Authenticatable
 {
     const IS_ADMIN = 1;
     const NOT_ADMIN = 0;
-    const IS_BANNED = 1;
-    const IS_ACTIVE = 0;
+    const IS_BANNED = 0;
+    const IS_ACTIVE = 1;
 
     use Notifiable;
 
@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     //Методы привязки и авторизации через вк
     /**
-     * Добавить поля при авторизации через вк, авторизации по вк
+     * Добавить поля пользователю который захочет привязать свой аккаунт к вк
      *
      * @param $fields
      * @return static
@@ -143,11 +143,12 @@ class User extends Authenticatable
      */
     public function toggleAdmin($value)
     {
-        if($value == null)
+        if ($value)
         {
-            return $this->makeNormal();
+            return $this->makeAdmin();
         }
-        return $this->makeAdmin();
+
+        return $this->makeNormal();
     }
 
     /**
@@ -172,11 +173,12 @@ class User extends Authenticatable
      * Переключатель БАНА
      * @param $value
      */
-    public function toggleBan($value)
+    public function toggleStatus($value)
     {
-        if($value == null)
+        if($value)
         {
             return $this->unban();
+
         }
         return $this->ban();
     }

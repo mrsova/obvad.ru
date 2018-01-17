@@ -38,7 +38,7 @@
                   <th>Логин</th>
                   <th>Vk</th>
                   <th>Email</th>
-                  <th>Админ</th>
+                  <th>Роль</th>
                   <th>Cтатус</th>
                   <th>Действия</th>
                 </tr>
@@ -50,12 +50,24 @@
                     <td>{{$user->uids}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->login}}</td>
-                    <td>{{$user->vk_url}}</td>
+                    <td><a href="{{$user->vk_url}}">{{$user->vk_url}}</a></td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->is_admin}}</td>
-                    <td>{{$user->status}}</td>
                     <td>
-                      <a href="{{route('users.edit', 1)}}" class="fa fa-pencil"></a>
+                      @if($user->is_admin)
+                        Администратор
+                      @else
+                        Пользователь
+                      @endif
+                    </td>
+                    <td>
+                      @if($user->status)
+                        Активен
+                      @else
+                        Не актвен
+                      @endif
+                    </td>
+                    <td>
+                      <a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a>
                       {{Form::open(['route'=>['users.destroy', 1], 'method'=>'delete'])}}
                       <button onclick="return confirm('Вы действительно хотите удалить?')" type="submit" class="delete">
                         <i class="fa fa-remove"></i>
