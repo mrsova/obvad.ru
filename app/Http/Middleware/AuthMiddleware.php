@@ -5,10 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class AuthMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Проверяет авторизован ли пользователь если авторизован то ништяк если нет то по всем маршрутам возвращать 404
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -17,9 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/');
+        if(Auth::check()){
+            return $next($request);
         }
+        abort(404);
 
         return $next($request);
     }

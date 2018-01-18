@@ -104,6 +104,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Сгенерировать токен для восстановления пароля
+     */
+    public function generateResetTokenPass()
+    {
+        $this->reset_token_pass = str_random(100);
+        $this->save();
+    }
+    /**
      * Редактирование пользователя
      * @param $fields
      *

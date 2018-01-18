@@ -6,47 +6,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    asfg
-                    {{--@foreach($posts as $post)--}}
-                        {{--<article class="post">--}}
-                            {{--<div class="post-thumb">--}}
-                                {{--<a href="{{route('post.show', $post->slug)}}"><img src="{{$post->getImage()}}" alt=""></a>--}}
+                    @foreach($posts as $post)
+                        <article class="post">
+                            <div class="post-thumb">
+                                <a href=""><img src="#" alt=""></a>
+                            </div>
+                            <div class="post-content">
+                                <header class="entry-header text-left text-uppercase">
+                                    <h1 class="entry-title"><a href="">{{$post->title}}</a></h1>
+                                </header>
+                                <div class="entry-content">
+                                    <p>
+                                        {!!$post->content!!}
+                                    </p>
 
-                                {{--<a href="{{route('post.show', $post->slug)}}" class="post-thumb-overlay text-center">--}}
-                                    {{--<div class="text-uppercase text-center">View Post</div>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                            {{--<div class="post-content">--}}
-                                {{--<header class="entry-header text-center text-uppercase">--}}
-                                    {{--@if($post->hasCategory())--}}
-                                        {{--<h6><a href="{{route('category.show', $post->category->slug)}}"> {{$post->getCategoryTitle()}}</a></h6>--}}
-                                    {{--@endif--}}
-                                    {{--<h1 class="entry-title"><a href="{{route('post.show', $post->slug)}}">{{$post->title}}</a></h1>--}}
-
-
-                                {{--</header>--}}
-                                {{--<div class="entry-content">--}}
-                                    {{--<p>--}}
-                                        {{--{!!$post->description!!}--}}
-                                    {{--</p>--}}
-
-                                    {{--<div class="btn-continue-reading text-center text-uppercase">--}}
-                                        {{--<a href="{{route('post.show', $post->slug)}}" class="more-link">Continue Reading</a>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="social-share">--}}
-                                    {{--<span class="social-share-title pull-left text-capitalize">By <a href="#">{{$post->author->name}}</a> On {{$post->getDate()}}</span>--}}
-                                    {{--<ul class="text-center pull-right">--}}
-                                        {{--<li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
-                                        {{--<li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
-                                        {{--<li><a class="s-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>--}}
-                                        {{--<li><a class="s-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>--}}
-                                        {{--<li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>--}}
-                                    {{--</ul>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</article>--}}
-                    {{--@endforeach--}}
+                                    <div class="btn-continue-reading text-center text-uppercase">
+                                        <a href="" class="more-link">Показать подробнее</a>
+                                    </div>
+                                </div>
+                                <div class="social-share">
+                                    <span class="social-share-title pull-left text-capitalize">
+                                        Автор: {{$post->user->name}} <br/>
+                                        @if($post->user->vk_url)
+                                            <a style="color:#00BFF3" href="{{$post->user->vk_url}}">Перейти на страницу в VK</a>
+                                        @endif
+                                    </span>
+                                    <ul class="text-center pull-right">
+                                        <li><a class="s-facebook"><i class="glyphicon glyphicon-eye-open"></i> </a> {{$post->views}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    @endforeach
                     {{--{{$posts->links()}}--}}
                     {{--<ul class="pagination">--}}
                     {{--<li class="active"><a href="#">1</a></li>--}}

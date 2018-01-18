@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin','middleware' => 'admin'], function(){
     Route::get('/', 'DashboardController@index');
     Route::resource('/users', 'UsersController');
     //Route::resource('/posts', 'PostsController');
@@ -17,19 +17,27 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
 
 
 Route::group(['namespace'=>'Front'], function(){
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'PostsController@index');
     Route::get('/vklogin', 'AuthController@vkLogin')->name('vklogin');
     Route::get('/auth/callback', 'AuthController@AuthVk');
 
+    //Если пользователь авторизован то разрешаем маршрут
+
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/logout', 'AuthController@logout');
+        Route::get('/profile', 'ProfileController@index');
+        Route::post('/profile', 'ProfileController@store');
+    });
+
+    //Если не авторизован то разрешаем такие маршруты вся фишка в middleware class RedirectIfAutentificated
+    Route::group(['middleware' => 'guest'], function() {
         Route::get('/login', 'AuthController@loginForm')->name('login');
         Route::post('/login', 'AuthController@login');
         Route::get('/register', 'AuthController@registerForm');
         Route::post('/register', 'AuthController@register');
         Route::get('/resetpass', 'AuthController@resetPassShowForm')->name('resetpass');
         Route::post('/resetpass', 'AuthController@resetPass');
-
-
-    Route::get('/logout', 'AuthController@logout');
-        Route::get('/profile', 'ProfileController@index');
-        Route::post('/profile', 'ProfileController@store');
+        Route::get('/resetpass/{token}', 'AuthController@showSaveNewPasswordForm');
+        Route::post('/resetpass/{token}', 'AuthController@resetPassNew');
+    });
 });

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Mail\UserEmail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use SocialiteProviders\Manager\Config;
 
@@ -33,8 +35,8 @@ class AuthController extends Controller
      */
     public function AuthVk()
     {
-
         $user = Socialite::driver('vkontakte')->user();
+
         if(!Auth::check())
         {
             $isUserVk = User::isVk($user->user['uid']);
@@ -58,8 +60,7 @@ class AuthController extends Controller
                 'uids'=>$user->user['uid'],
                 'vk_url'=>'https://vk.com/id'.$user->user['uid']
             ]);
-            Auth::login($profile);
-            return redirect()->back()->with('statusProfile', 'Вы прявязали аккаунт от VK');
+            return redirect('/profile')->with('statusProfile', 'Вы прявязали аккаунт от VK');
         }
     }
 
@@ -72,18 +73,48 @@ class AuthController extends Controller
     }
 
     /**
-     * Восстановить пароль
+     * Сгенерировать токен и отправить письмо для восстановления пароля
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function resetPass(Request $request)
     {
         $this->validate($request,[
-            'email' =>  'required|email',
+            'email' =>  'required|exists:users',
            ]);
-        dd($request->all());
-       // return redirect()->back()->with('statusLogin', 'Неправильный логин или пароль');
+        $user = User::where('email', $request->get('email'))->first();
+        $user->generateResetTokenPass();
+        Mail::to($user)->send(new UserEmail($user));
+        return redirect('/')->with('status', 'Проверьте вашу почту');
     }
+
+    /**
+     * Отобразить форму с восстановлением пароля для пользователя если токен из урла совпадет
+     * @param $token
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function showSaveNewPasswordForm($token)
+    {
+        $user = User::where('reset_token_pass', $token)->firstOrFail();
+        return view('front.reset', compact('user'));
+    }
+
+    /**
+     * Восстановления сохранения в базу
+     * @param Request $request
+     */
+    public function resetPassNew(Request $request)
+    {
+        $this->validate($request,[
+            'password' => 'required|confirmed'
+        ]);
+        $user = User::find($request->get('user_id'));
+        $user->reset_token_pass = null;
+        $user->generatePassword($request->get('password'));
+        return redirect('/login')->with('status', 'Ваш пароль успешно обновлен');
+
+    }
+
     /**
      * Показать форму авторизации
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -141,10 +172,6 @@ class AuthController extends Controller
         $user->generatePassword($request->get('password'));
         return redirect('/login');
     }
-
-
-
-
 
     /**
      * Выход

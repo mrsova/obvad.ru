@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('login')->nullable();
             $table->string('vk_url')->nullable();
             $table->string('email')->nullable();
+            $table->string('reset_token_pass')->nullable();
             $table->string('password')->nullable();
             $table->integer('is_admin')->default(0);
             $table->integer('status')->default(0);
