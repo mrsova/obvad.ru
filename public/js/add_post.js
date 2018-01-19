@@ -108,10 +108,8 @@ $(document).ready(function () {
     });
 
     $('.content-item').each(function(i,elem){
-
         if ($(this).height() > 300){
-            console.log(1);
-            console.log($(elem).parent().next().find('.show_block').css('display','inline-block'));
+            $(elem).parent().next().find('.show_block').css('display','inline-block');
         }
     });
 });
