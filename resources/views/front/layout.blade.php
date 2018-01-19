@@ -86,5 +86,6 @@
 </footer>
 <!-- js files -->
 <script type="text/javascript" src="/js/front.js"></script>
+@yield('scripts')
 </body>
 </html>

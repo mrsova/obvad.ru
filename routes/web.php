@@ -27,6 +27,7 @@ Route::group(['namespace'=>'Front'], function(){
         Route::get('/logout', 'AuthController@logout');
         Route::get('/profile', 'ProfileController@index');
         Route::post('/profile', 'ProfileController@store');
+        Route::post('/addpost', 'PostsController@addPost');
     });
 
     //Если не авторизован то разрешаем такие маршруты вся фишка в middleware class RedirectIfAutentificated

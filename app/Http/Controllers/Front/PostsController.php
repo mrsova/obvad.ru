@@ -14,4 +14,9 @@ class PostsController extends Controller
         $posts = Post::paginate(10);
         return view('front.index', compact('posts'));
     }
+
+    public function addPost()
+    {
+        
+    }
 }

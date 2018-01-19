@@ -3526,10 +3526,10 @@ body {
     background: #F4F4F4;
 }
 
-span, p, input {
-    font-family: 'Merriweather', serif;
-    line-height: 26px;
-}
+/*span, p, input {*/
+    /*font-family: 'Merriweather', serif;*/
+    /*line-height: 26px;*/
+/*}*/
 
 img {
     max-width: 100%;
@@ -3708,7 +3708,7 @@ header
     right: 7.5%;
     display: none;
 }
-
+/*
 .social-share ul li a i {
     height: 30px;
     width: 30px;
@@ -3722,7 +3722,7 @@ header
     color: #C2C2C2;
 
 }
-
+/*
 .widget .social-share ul li a i {
     height: 33px;
     width: 33px;
@@ -3742,7 +3742,7 @@ header
     color: #FFF;
     border-color: #00BFF3;
 }
-
+*/
 .nav > li > a {
     position: relative;
     display: block;
@@ -3803,14 +3803,15 @@ article {
 }
 
 a.more-link {
+    background: #333;
+    text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 1px;
     overflow: hidden;
     padding: 10px 20px;
     text-decoration: none;
-    margin: 24px 0 28px;
     display: inline-block;
-    color: #00BFF3;
+    color: #fff;
     border: 1px solid #eee;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
@@ -3822,9 +3823,30 @@ a.more-link:hover {
     border-color: #00BFF3;
 }
 
+a.show_block {
+    background: #333;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    padding: 10px 20px;
+    text-decoration: none;
+    display:none;
+    color: #fff;
+    border: 1px solid #eee;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+a.show_block:hover {
+    background: #00BFF3;
+    color: #fff;
+    border-color: #00BFF3;
+}
+
 .post {
     background: #fff;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .post-content {
@@ -3843,7 +3865,7 @@ a.more-link:hover {
 }
 
 .social-share-title {
-    padding: 9px 0;
+    /*padding: 9px 0;*/
     font-style: italic;
     font-size: 13px;
 }
@@ -4017,6 +4039,12 @@ about me
 .social-share {
     padding: 10px 0 0;
     margin-bottom: 0;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.social-share .glyphicon {
+    color: #717171;
 }
 
 /*=============
