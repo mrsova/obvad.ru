@@ -20,15 +20,15 @@ class Image extends Model
      * Загрузка картинок
      * @param $image
      */
-    public static function uploadImages($images, $id)
+    public static function uploadImages($image, $id)
     {
-        foreach ($images as $im) {
-            //Загружаем картинки в таблицу images и проставляем id для связи с постом
-            $image = new static;
-            $image->post_id = $id;
-            $image->url = $im;
-            $image->save();
-        }
+        if ($image == null){ return; }
+        $filename = str_random(15) . '.' . $image->extension();
+        $image->storeAs('uploads/'.$id.'/', $filename);
+        $img = new static;
+        $img->post_id = $id;
+        $img->url = $filename;
+        $img->save();
         return true;
     }
 

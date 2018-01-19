@@ -3,12 +3,11 @@
 namespace App;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use Sluggable;
+
 
     const IS_PUBLIC = 0;
     const IS_STANDART = 0;
@@ -20,14 +19,14 @@ class Post extends Model
      *
      * @return array
      */
-    public function sluggable()
+   /* public function sluggable()
     {
         return [
             'slug' => [
                 'source' => 'title'
             ]
         ];
-    }
+    }*/
 
     /**
      * Связь с пользователями,пост принадлежит к одному автору
@@ -56,9 +55,10 @@ class Post extends Model
     public static function add($fields)
     {
         $post = new static;
-        //$post->fill($fields);
+        $post->fill($fields);
         $post->user_id = 1;
-        $post->title = 12;
+        $post->title = 1;
+        $post->slug = 1;
         $post->save();
         return $post;
     }

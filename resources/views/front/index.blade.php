@@ -107,10 +107,18 @@
             -moz-transition: max-height 1s ease;
             -o-transition: max-height 1s ease;
             transition: max-height 1s ease;
+            margin-bottom: 5px;
         }
         .show_block{
             margin: 20px 0;
             display:none;
+        }
+        .title_post{
+            font-size: 15px !important;
+        }
+
+        .content-item{
+            margin-bottom: 30px;
         }
 
         @media (max-width: 1024px) {
@@ -148,11 +156,12 @@
                         <article class="post">
                             <div class="post-content">
                                 <header class="entry-header text-left text-uppercase">
-                                    <h1 class="entry-title"><a>Предложить объявление</a></h1>
+                                    <h1 class="entry-title"><a class="title_post">Предложить объявление</a></h1>
                                 </header>
-                                <form action="" method="post" class="flex">
+                                <form action="/addpost" method="post" class="flex">
+                                    {{ csrf_field() }}
                                     <div class="flex__text">
-                                        <textarea class="subpost form-control" name="text"></textarea>
+                                        <textarea class="subpost form-control" name="content"></textarea>
                                     </div>
                                     <div class="flex__drop">
                                         <div id="dropZone">
@@ -181,9 +190,13 @@
                                 <a href=""><img src="#" alt=""></a>
                             </div>
                             <div class="post-content">
-                                <header class="entry-header text-left text-uppercase">
-                                    <h1 class="entry-title"><a>{{$post->title}}</a></h1>
-                                </header>
+                                {{--<header class="entry-header text-left text-uppercase">--}}
+                                    {{--<h1 class="entry-title">--}}
+                                        {{--<a class="title_post">--}}
+                                            {{--Доска объявлений--}}
+                                        {{--</a>--}}
+                                    {{--</h1>--}}
+                                {{--</header>--}}
                                 <div class="entry-content" id="entry-content">
                                     <div class="content-item">
                                         {!!$post->content!!}

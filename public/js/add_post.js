@@ -1,7 +1,12 @@
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     ArrImg = [];
     var isArray;
-
 
     var dropZone = $('#dropZone');
 
@@ -35,26 +40,27 @@ $(document).ready(function () {
 
     $('#upload').on('click', function (e) {
         e.preventDefault();
-        var text = $('form textarea').val();
+        var content = $('form textarea').val();
         var form_data = new FormData();
 
         for (key in ArrImg) {
             form_data.append('file-' + key, ArrImg[key]);
         }
-        form_data.append('text', text);
+        form_data.append('content', content);
         $.ajax({
-            url: 'rest.php',
-            dataType: 'text',
+            url: '/addpost',
             cache: false,
+            dataType: 'text',
             contentType: false,
             processData: false,
             data: form_data,
-            type: 'post',
+            type: 'POST',
             success: function (data) {
                 console.log(data);
             }
         });
     });
+
 
     dropZone.on('click', function () {
         $(this).next().click();
