@@ -199,8 +199,10 @@
                                 {{--</header>--}}
                                 <div class="entry-content" id="entry-content">
                                     <div class="content-item">
-                                        {!!$post->content!!}
-                                    </div>
+                                        @foreach($post->images as $image)
+                                            {{--{{$image->id}}--}}
+                                            <img src="{{$image->getImage($post->id)}}" alt="">
+                                        @endforeach
                                 </div>
                                 <div class="btn-continue-reading text-center">
                                     <a href="" class="show_block">Развернуть</a>

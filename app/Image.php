@@ -33,6 +33,18 @@ class Image extends Model
     }
 
     /**
+     * Получить картинку
+     * @return string
+     */
+    public function getImage($id)
+    {
+        if($this->url == null)
+        {
+            return '/img/no-image.png';
+        }
+        return '/uploads/'.$id.'/'. $this->url;
+    }
+    /**
      * Удаление картинок
      * @param $image
      */
