@@ -21,6 +21,16 @@ class PostsController extends Controller
         return view('front.index', compact('posts'));
     }
 
+
+    public function setViews(Request $request)
+    {
+        $post = Post::find($request->get('id'));
+        $post->setViews();
+       /* return response()->json(array(
+            'id' => $request->all()
+        ));*/
+    }
+
     /**
      * Обработка кнопки добавить Объявление
      * @param Request $request

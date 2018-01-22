@@ -72,6 +72,14 @@ class Post extends Model
     {
         $this->fill($fields);
         $this->save();
+        return true;
+    }
+
+    public function setViews()
+    {
+        $this->views = $this->views + 1;
+        $this->save();
+        return true;
     }
 
     /**

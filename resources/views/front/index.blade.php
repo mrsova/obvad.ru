@@ -220,7 +220,7 @@
                         </article>
                     @endif
                     @foreach($posts as $post)
-                        <article class="post">
+                        <article class="post post_item_object" data-id="{{$post->id}}">
                             <div class="fotorama" data-nav="thumbs">
                                 <a href=""><img src="#" alt=""></a>
                             </div>

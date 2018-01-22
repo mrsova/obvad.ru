@@ -20,6 +20,7 @@ Route::group(['namespace'=>'Front'], function(){
     Route::get('/', 'PostsController@index');
     Route::get('/vklogin', 'AuthController@vkLogin')->name('vklogin');
     Route::get('/auth/callback', 'AuthController@AuthVk');
+    Route::post('/setviews', 'PostsController@setViews');
 
     //Если пользователь авторизован то разрешаем маршрут
 

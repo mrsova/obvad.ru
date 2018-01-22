@@ -3,7 +3,6 @@
     $(window).resize(function() {
         init();
     });
-
     function init(){
         $('.show_block').on('click', function (event) {
             event.preventDefault();
@@ -25,7 +24,21 @@
                 $(elem).parent().next().find('.show_block').css('display','inline-block');
             }
         });
+
     }
+    //Добавление просмотров к посту
+    $('.post_item_object').on('click', function (event) {
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/setviews',
+            dataType : 'json',
+            data: {id: id},
+            type: 'POST',
+            success: function (data) {
+                //var result = JSON.parse(data);
+            }
+        });
+    });
 
     if($(".add_post_admin").html()) {
         $.ajaxSetup({
@@ -93,12 +106,14 @@
                 data: form_data,
                 type: 'POST',
                 success: function (data) {
-                    result = JSON.parse(data);
+                    var result = JSON.parse(data);
                     if(result.success == true){
+
                         $('.errors_post').html('<div class="alert alert-success"><ul><li>Объявление добавлено, на проверке у модератора</li></ul></div>');
                         $('.add_post_admin textarea').val(' ');
                         $('#outputMulti').html(' ');
                         ArrImg = null;
+
                     }else{
                         $('.errors_post').html('<div class="alert alert-danger"><ul><li>'+result.content+'</li></ul></div>')
                     }
@@ -147,7 +162,6 @@
                     })(f);
                     reader.readAsDataURL(f);
                 }
-
             }
         }
     }
