@@ -7,12 +7,36 @@
             height: 100%;
             min-width: 320px;
         }
-
-
         .img-thumbnail {
             height: 75px;
-            border: 1px solid #000;
+            border: 1px solid #eee;
             margin: 10px 5px 0 0;
+            position: relative;
+            display:inline-block;
+        }
+        #outputMulti{
+            display: block;
+            margin: 0 auto;
+        }
+
+        #outputMulti a{
+            position: relative;
+            display:inline-block;
+            cursor: pointer;
+            margin-right: 17px;
+        }
+
+        #outputMulti a:after{
+            content: "x";
+            display: block;
+            position: absolute;
+            height: 25px;
+            width: 26px;
+            color: #000;
+            background: #fff;
+            top: 0px;
+            right: -4px;
+            border-radius: 18px 16px;
         }
 
         #dropZone {
@@ -97,17 +121,18 @@
             left: 0;
             top: 173px;
         }
-        .show_content{
-            max-height:  700px !important;
-        }
+
         #entry-content{
-            max-height: 300px;
+            max-height: 434px;
             overflow: hidden;
-            -webkit-transition: max-height 1s ease;
-            -moz-transition: max-height 1s ease;
-            -o-transition: max-height 1s ease;
-            transition: max-height 1s ease;
+            -webkit-transition: max-height 0.6s ease;
+            -moz-transition: max-height 0.6s ease;
+            -o-transition: max-height 0.6s ease;
+            transition: max-height 0.6s ease;
             margin-bottom: 5px;
+        }
+        .show_content{
+            max-height:  100000px !important;
         }
         .show_block{
             margin: 20px 0;
@@ -120,7 +145,13 @@
         .content-item{
             margin-bottom: 30px;
         }
-
+        .text-post{
+            margin: 15px 0px 15px 0px;
+        }
+        .image_block{
+            display: inline;
+            text-align: center;
+        }
         @media (max-width: 1024px) {
             .flex {
                 -webkit-box-orient: vertical;
@@ -145,6 +176,7 @@
                 left: initial;
                 top: initial;
             }
+
         }
     </style>
     <!--main content start-->
@@ -158,10 +190,17 @@
                                 <header class="entry-header text-left text-uppercase">
                                     <h1 class="entry-title"><a class="title_post">Предложить объявление</a></h1>
                                 </header>
-                                <form action="/addpost" method="post" class="flex">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-10 errors_post">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="/addpost" method="post" class="flex add_post_admin">
                                     {{ csrf_field() }}
                                     <div class="flex__text">
-                                        <textarea class="subpost form-control" name="content"></textarea>
+                                        <textarea class="subpost form-control" placeholder="Текст объявления" name="content"></textarea>
                                     </div>
                                     <div class="flex__drop">
                                         <div id="dropZone">
@@ -186,7 +225,7 @@
                     @endif
                     @foreach($posts as $post)
                         <article class="post">
-                            <div class="post-thumb">
+                            <div class="fotorama" data-nav="thumbs">
                                 <a href=""><img src="#" alt=""></a>
                             </div>
                             <div class="post-content">
@@ -199,10 +238,29 @@
                                 {{--</header>--}}
                                 <div class="entry-content" id="entry-content">
                                     <div class="content-item">
-                                        {{$post->content}}
-                                        @foreach($post->images as $image)
-                                            <img src="{{$image->getImage($post->id)}}" alt="">
-                                        @endforeach
+                                        <div class="text-post">
+                                            {{$post->content}}
+                                        </div>
+                                        <div class="image_block">
+                                            <div class="row">
+                                                @foreach($post->images as $key=>$image)
+                                                    @if (count($post->images) == 1)
+                                                        <div class="col-xs-12">
+                                                            <!--data-fancybox="gallery"-->
+                                                            <a class="fancyimg grouped_elements" data-fancybox="group{{$post->id}}" href="{{$image->getImage($post->id)}}">
+                                                                <img src="{{$image->getImage($post->id)}}">
+                                                            </a>
+                                                        </div>
+                                                    @else
+                                                    <div class="col-xs-4">
+                                                        <a class="fancyimg grouped_elements" data-fancybox="group{{$post->id}}" href="{{$image->getImage($post->id)}}">
+                                                            <img src="{{$image->getImageSmall($post->id)}}">
+                                                        </a>
+                                                    </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="btn-continue-reading text-center">
@@ -240,5 +298,9 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="{{asset('js/fancybox.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/add_post.js')}}"></script>
- @stop
+@stop
+@section('styles')
+    <link rel="stylesheet" href="{{asset('css/fancybox.css')}}" />
+@stop

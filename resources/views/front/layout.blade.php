@@ -9,6 +9,7 @@
 
     <title>Доска объявлений</title>
     <!-- common css -->
+    @yield('styles')
     <link rel="stylesheet" href="/css/front.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/favicon.png">
