@@ -141,10 +141,6 @@
         .title_post{
             font-size: 15px !important;
         }
-
-        .content-item{
-            margin-bottom: 30px;
-        }
         .text-post{
             margin: 15px 0px 15px 0px;
         }
