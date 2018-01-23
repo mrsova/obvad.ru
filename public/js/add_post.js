@@ -1,4 +1,10 @@
 (function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     init();
     $(window).resize(function() {
         init();
@@ -26,27 +32,28 @@
         });
 
     }
+
     //Добавление просмотров к посту
     $('.post_item_object').on('click', function (event) {
         var id = $(this).data('id');
-        $.ajax({
-            url: '/setviews',
-            dataType : 'json',
-            data: {id: id},
-            type: 'POST',
-            success: function (data) {
-                //var result = JSON.parse(data);
-            }
+       //var value = localStorage.getItem('viewPost'+id);
+        $.getJSON('http://ip-api.com/json?callback=?', function(data) {
+            console.log(JSON.stringify(data, null, 2));
         });
+        if(!localStorage['viewPost-' + id]){
+            $.ajax({
+                url: '/setviews',
+                dataType : 'json',
+                data: {id: id},
+                type: 'POST',
+                success: function (data) {
+                    localStorage.setItem('viewPost-' + id, 'true');
+                }
+            });
+        }
     });
 
     if($(".add_post_admin").html()) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         var ArrImg = [];
         var isArray;
 

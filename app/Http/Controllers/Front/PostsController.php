@@ -24,11 +24,16 @@ class PostsController extends Controller
 
     public function setViews(Request $request)
     {
-        $post = Post::find($request->get('id'));
+        $post = Post::find($request->get('id'))->firstOrFail();
+        if(!$post) {
+            return response()->json(array(
+                'success' => false
+            ));
+        }
         $post->setViews();
-       /* return response()->json(array(
-            'id' => $request->all()
-        ));*/
+        return response()->json(array(
+            'success' => true
+        ));
     }
 
     /**
