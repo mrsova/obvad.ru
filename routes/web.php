@@ -3,7 +3,7 @@
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin','middleware' => 'admin'], function(){
     Route::get('/', 'DashboardController@index');
     Route::resource('/users', 'UsersController');
-    //Route::resource('/posts', 'PostsController');
+    Route::resource('/posts', 'PostsController');
     /*Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');

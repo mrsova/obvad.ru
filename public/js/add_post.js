@@ -36,10 +36,6 @@
     //Добавление просмотров к посту
     $('.post_item_object').on('click', function (event) {
         var id = $(this).data('id');
-       //var value = localStorage.getItem('viewPost'+id);
-        $.getJSON('http://ip-api.com/json?callback=?', function(data) {
-            console.log(JSON.stringify(data, null, 2));
-        });
         if(!localStorage['viewPost-' + id]){
             $.ajax({
                 url: '/setviews',

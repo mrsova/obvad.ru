@@ -7,7 +7,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="{{route('posts.index')}}">
             <i class="fa fa-sticky-note-o"></i> <span>Объявления</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">1</small>

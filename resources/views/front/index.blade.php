@@ -180,7 +180,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    @if(Auth::check())
+                    @if(Auth::check() && Auth::user()->status)
                         <article class="post">
                             <div class="post-content">
                                 <header class="entry-header text-left text-uppercase">

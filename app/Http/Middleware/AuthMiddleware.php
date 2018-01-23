@@ -17,7 +17,7 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->status){
             return $next($request);
         }
         abort(404);

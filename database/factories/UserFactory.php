@@ -24,7 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-        'title' => $faker->sentence,
         'content' => $faker->sentence,
         'views' => $faker->numberBetween(0,5000),
         'user_id' => 1,
