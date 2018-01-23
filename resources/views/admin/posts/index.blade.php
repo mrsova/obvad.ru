@@ -32,30 +32,42 @@
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Название</th>
-                  <th>Категория</th>
-                  <th>Теги</th>
-                  <th>Картинка</th>
-                  <th>Действия</th>
+                  <th>Содержание</th>
+                  <th>Изображения</th>
+                  <th>Автор</th>
+                  <th>Дата добавления</th>
+                  <th>Редактировать</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($posts as $post)
                   <tr>
-                    <td</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$post->id}}</td>
+                    <td>{{$post->content}}</td>
                     <td>
-
+                      <table>
+                        <tr>
+                          @foreach($post->images as $key=>$image)
+                              <td>
+                                <img src="{{$image->getImageSmall($post->id)}}" style="padding-right: 20px;" width="100" height="75">
+                              </td>
+                          @endforeach
+                        </tr>
+                      </table>
                     </td>
+                    <td><a href="{{route('users.edit', $post->user->id)}}">{{$post->user->name}}</a></td>
+                    <td>{{$post->getDate()}}</td>
                     <td>
+                    @if($post->status == 0)
+                      <a href="/admin/posts/toggle/{{$post->id}}" class="fa fa-thumbs-o-up"></a>
+                    @else
+                      <a href="/admin/posts/toggle/{{$post->id}}" class="fa fa-lock"></a>
+                    @endif
                     <a href="{{route('posts.edit', $post->id)}}" class="fa fa-pencil"></a>
                     {{Form::open(['route'=>['posts.destroy', $post->id], 'method'=>'delete'])}}
                         <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                          <i class="fa fa-remove"></i>
                         </button>
-
                     {{Form::close()}}
                     </td>
                   </tr>

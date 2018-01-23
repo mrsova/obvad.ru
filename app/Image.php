@@ -86,13 +86,32 @@ class Image extends Model
         }
         return '/uploads/'.$id.'/small/'. $this->url;
     }
+
     /**
      * Удаление картинок
+     * @param $id - идентификатор поста
      * @param $image
      */
     public static function removeImages($id)
     {
-        return self::where('post_id', $id)->delete();
+        Storage::delete('uploads/'.$id);
+        self::where('post_id', $id)->delete();
+        return true;
+    }
 
+    /**
+     * Удаление картинки из поста
+     * @param $id - идентификатор картинки
+     * @param $image
+     */
+    public static function removeImageItem($id)
+    {
+        $imgage = self::where('id', $id)->first();
+        Storage::delete([
+            'uploads/'.$imgage->post->id.'/'. $imgage->url,
+            'uploads/'.$imgage->post->id.'/small/'. $imgage->url
+        ]);
+        self::where('id', $id)->delete();
+        return true;
     }
 }

@@ -6,7 +6,7 @@
     <title>AdminLTE 2 | Blank Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/admin.css">
     <style>
         table.table form
@@ -427,6 +427,7 @@
     })
 
 </script>
+@yield('scripts')
 </body>
 
 </html>

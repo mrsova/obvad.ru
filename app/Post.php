@@ -4,15 +4,18 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Laravelrus\LocalizedCarbon\LocalizedCarbon;
+
 
 class Post extends Model
 {
 
 
-    const IS_PUBLIC = 0;
-    const IS_STANDART = 0;
+    const ALLOW = 1;
+    const DISALLOW = 0;
 
-    protected $fillable = ['title', 'content', 'description'];
+    protected $fillable = ['content'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -56,9 +59,7 @@ class Post extends Model
     {
         $post = new static;
         $post->fill($fields);
-        $post->user_id = 1;
-        $post->title = 1;
-        $post->slug = 1;
+        $post->user_id = Auth::user()->id;
         $post->save();
         return $post;
     }
@@ -75,11 +76,53 @@ class Post extends Model
         return true;
     }
 
+    /**
+     * Количество просмотров
+     * @return bool
+     */
     public function setViews()
     {
         $this->views = $this->views + 1;
         $this->save();
         return true;
+    }
+
+    /**
+     * Получить дату согздания объявления
+     * @return mixed|null|string
+     */
+    public function getDate()
+    {
+        return LocalizedCarbon::instance($this->created_at)->diffForHumans();
+    }
+
+    /**
+     * Разрешить объявление
+     */
+    public function allow()
+    {
+        $this->status = Post::ALLOW;
+        $this->save();
+    }
+    /**
+     * Запретить объявление
+     */
+    public function disAllow()
+    {
+        $this->status = Post::DISALLOW;
+        $this->save();
+    }
+
+    /**
+     * Переключатель объявления с активного на неактивный
+     */
+    public function toggleStatus()
+    {
+        if($this->status == Post::DISALLOW)
+        {
+            return $this->allow();
+        }
+        return $this->disAllow();
     }
 
     /**
