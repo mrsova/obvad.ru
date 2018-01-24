@@ -44,6 +44,19 @@
                                 </form>
                             </div>
                         </article>
+                    @else
+                        <article class="post">
+                            <div class="post-content">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-10 errors_post">
+                                            <h4>Чтобы добавить объявление, необходимо <a href="/register">зарегистироваться</a>, или
+                                                <a href="/login">войти</a>  через вк</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     @endif
                     @foreach($posts as $post)
                         <article class="post post_item_object" data-id="{{$post->id}}">

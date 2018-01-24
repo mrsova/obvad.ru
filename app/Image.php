@@ -94,7 +94,7 @@ class Image extends Model
      */
     public static function removeImages($id)
     {
-        Storage::delete('uploads/'.$id);
+        Storage::deleteDirectory('uploads/'.$id);
         self::where('post_id', $id)->delete();
         return true;
     }

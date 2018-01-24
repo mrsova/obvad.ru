@@ -6,9 +6,6 @@
     });
 
     init();
-    $(window).resize(function() {
-        init();
-    });
     function init(){
         $('.show_block').on('click', function (event) {
             event.preventDefault();
