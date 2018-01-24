@@ -71,7 +71,11 @@ class Post extends Model
      */
     public function edit($fields)
     {
+        if(empty($fields['status'])) {
+            $fields['status'] = 0;
+        }
         $this->fill($fields);
+        $this->status = $fields['status'];
         $this->save();
         return true;
     }
@@ -84,7 +88,7 @@ class Post extends Model
     {
         $this->views = $this->views + 1;
         $this->save();
-        return true;
+        return  $this->views;
     }
 
     /**

@@ -93,7 +93,9 @@
 
         $('#upload').on('click', function (e) {
             e.preventDefault();
-            var content = $('form textarea').val();
+            var textarea = $('form textarea');
+            var content = textarea.val().replace(/\n/g, '<br>');
+            content = remove_tags(content);
             var form_data = new FormData();
 
             for (key in ArrImg) {
@@ -167,5 +169,13 @@
                 }
             }
         }
+    }
+    function remove_tags(html)
+    {
+        var html = html.replace("<br>","||br||");
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        html = tmp.textContent||tmp.innerText;
+        return html.replace("||br||","<br>");
     }
 })();

@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-
+        return view('admin.posts.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -36,8 +36,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'content' => 'required'
+        ]);
         $post = Post::add($request->all());
-        Image::uploadImages([1, 2, 3], $post->id);
+
+        if($request->hasFile('fileMulti'))
+        {
+            foreach($request->file('fileMulti') as $file)
+            {
+                Image::uploadImages($file, $post->id);
+            }
+        }
         return redirect()->back();
     }
 

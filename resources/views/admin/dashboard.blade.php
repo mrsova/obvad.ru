@@ -19,11 +19,11 @@
                 <h3 class="box-title">Главная страница</h3>
             </div>
             <div class="box-body">
-                <textarea name="description" id="" cols="30" rows="10" class="form-control" ></textarea>
+               Доаска объявлений | Вадинский район
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                и здесь есть место для какого-нибудь текста
+
             </div>
             <!-- /.box-footer-->
         </div>
