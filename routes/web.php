@@ -7,7 +7,6 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin','middleware' => 'admin'], 
     Route::get('/posts/toggle/{id}', 'PostsController@toggle');
     Route::resource('/meta', 'MetaController');
 
-
     /*Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');
@@ -23,9 +22,9 @@ Route::group(['namespace'=>'Front'], function(){
     Route::get('/vklogin', 'AuthController@vkLogin')->name('vklogin');
     Route::get('/auth/callback', 'AuthController@AuthVk');
     Route::post('/setviews', 'PostsController@setViews');
+    Route::get('/info', 'InfoController@Index');
 
     //Если пользователь авторизован то разрешаем маршрут
-
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/logout', 'AuthController@logout');
         Route::get('/profile', 'ProfileController@index');
