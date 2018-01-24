@@ -48,7 +48,7 @@ class PostsController extends Controller
                 Image::uploadImages($file, $post->id);
             }
         }
-        return redirect()->back();
+        return redirect()->route('posts.index');
     }
 
     /**

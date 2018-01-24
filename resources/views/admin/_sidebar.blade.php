@@ -18,6 +18,6 @@
             </span>
         </a>
     </li>
-    <li><a href=""><i class="fa fa-tags"></i> <span>Мета Теги</span></a></li>
+    <li><a href="/admin/meta"><i class="fa fa-tags"></i> <span>Мета Теги</span></a></li>
     <li><a href="{{route('users.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
 </ul>

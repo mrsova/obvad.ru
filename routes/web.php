@@ -5,12 +5,15 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin','middleware' => 'admin'], 
     Route::resource('/users', 'UsersController');
     Route::resource('/posts', 'PostsController');
     Route::get('/posts/toggle/{id}', 'PostsController@toggle');
+    Route::resource('/meta', 'MetaController');
+
+
     /*Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');
     Route::resource('/posts', 'PostsController');
     Route::get('/comments', 'CommentsController@index')->name('comments.index');
-    Route::delete('/comments/{id}/destroy', 'CommentsController@destroy')->name('comments.destroy');
+    Route::delete('/comments/{id}/destroy', 'CommentsController@destroy')->name('comments..destroy');
     Route::resource('/subscribers', 'SubsController');*/
 });
 
