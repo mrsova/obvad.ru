@@ -61,7 +61,7 @@
                                 <div class="entry-content" id="entry-content">
                                     <div class="content-item">
                                         <div class="text-post">
-                                            {{$post->content}}
+                                            {!!$post->content!!}
                                         </div>
                                         <div class="image_block">
                                             <div class="row">
@@ -90,10 +90,12 @@
                                 </div>
                                 <div class="social-share">
                                     <span class="social-share-title pull-left text-capitalize">
-                                        Автор: {{$post->user->name}} <br/>
-                                        @if($post->user->vk_url)
-                                            <a style="color:#00BFF3" href="{{$post->user->vk_url}}">Перейти на страницу в VK</a>
-                                        @endif
+                                        <span class="social-share-title pull-left text-capitalize">
+                                            Автор: <a href="#">  {{$post->user->name}}</a></span><br/>
+                                            @if($post->user->vk_url)
+                                                <a style="color:#00BFF3" href="{{$post->user->vk_url}}">Перейти на страницу в VK</a>
+                                            @endif
+                                            Время: {{$post->getDate()}}
                                     </span>
                                     <ul class="text-center pull-right">
                                         <li><i class="glyphicon glyphicon-eye-open"></i> {{$post->views}}</li>

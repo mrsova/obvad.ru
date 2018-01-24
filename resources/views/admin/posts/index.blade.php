@@ -43,7 +43,7 @@
                 @foreach($posts as $post)
                   <tr>
                     <td>{{$post->id}}</td>
-                    <td>{{$post->content}}</td>
+                    <td>{!!$post->content!!}</td>
                     <td>
                       <table>
                         <tr>

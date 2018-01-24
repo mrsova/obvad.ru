@@ -93,7 +93,9 @@ class Post extends Model
      */
     public function getDate()
     {
-        return LocalizedCarbon::instance($this->created_at)->diffForHumans();
+        $date = $this->created_at;
+        return $date->diffInMonths(Carbon::now()) >= 1 ? $date->format('Y-m-d, g:h') : LocalizedCarbon::instance($this->created_at)->diffForHumans();
+
     }
 
     /**
