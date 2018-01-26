@@ -15,6 +15,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
     && apt-get install -y sendmail \
     && apt-get install -y curl \
     && apt-get install -y php7.1-curl \
+    && apt-get install -y php7.1-mbstring -y \
+    && apt-get install -y php7.1-xml -y \
     && apt-get install -y git \
 	&& groupadd sshusers \
 	&& useradd -d /var/www/html/obvad.ru/www -s /bin/bash -g sshusers -c obvad.ru -u 1009 obvad.ru \	
