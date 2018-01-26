@@ -106,7 +106,7 @@
                                         <span class="social-share-title pull-left text-capitalize">
                                             Автор: <a href="#">  {{$post->user->name}}</a></span><br/>
                                             @if($post->user->vk_url && !$post->user->is_admin)
-                                                <a style="color:#00BFF3" href="{{$post->user->vk_url}}">Перейти на страницу в VK</a>
+                                                <a style="color:#00BFF3" href="{{$post->user->vk_url}}">Перейти на страницу в VK</a><br/>
                                             @endif
                                             Время: {{$post->getDate()}}
                                     </span>
