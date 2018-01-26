@@ -29,6 +29,8 @@ class UserEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.resetpass');
+        return $this->from('obvadinfo@yandex.ru', 'Obvad.ru')
+        ->subject('Запрос на изменение пароля!')
+		->view('email.resetpass');
     }
 }
