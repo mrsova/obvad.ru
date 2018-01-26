@@ -40,7 +40,7 @@ Table of contents
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #F4F4F4;
+	background: rgba(150,150,150,0.05);  
     height: 100%;
     min-width: 320px;
 }
@@ -367,6 +367,7 @@ a.show_block:hover {
 }
 
 .post {
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.05);
     background: #fff;
     margin-bottom: 25px;
 }
@@ -1721,7 +1722,7 @@ img.profile-image
     padding: 20px;
     min-height: 153px;
 
-    background: #eee;
+    background: rgba(150,150,150,0.05);
     border: 1px solid #ccc;
 
     -webkit-border-radius: 5px;
