@@ -60,8 +60,7 @@
                     @endif
                     @foreach($posts as $post)
                         <article class="post post_item_object" data-id="{{$post->id}}">
-                            <div class="fotorama" data-nav="thumbs">
-                                <a href=""><img src="#" alt=""></a>
+                            <div class="fotorama" data-nav="thumbs">                               
                             </div>
                             <div class="post-content">
                                 {{--<header class="entry-header text-left text-uppercase">--}}
